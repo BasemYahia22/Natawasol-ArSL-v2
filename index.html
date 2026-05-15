@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <title>نتواصل - ترجمة فورية | Genius Ai</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Amiri", "Scheherazade New", "Poppins", sans-serif;
+      }
+      body {
+        background: #ffffff;
+        color: #1f2a44;
+        min-height: 100vh;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #ffffff 0%, #faf7ff 100%);
+        padding: 4px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #8e7ab5;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 12px rgba(142, 122, 181, 0.1);
+        border-radius: 0 0 28px 28px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 245, 0.9);
+        padding: 3px 14px;
+        border-radius: 50px;
+        border: 1px solid #e2d9f2;
+      }
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(145deg, #8e7ab5, #5b6390);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        border: 2px solid #b6e2d4;
+      }
+      .logo-text h2 {
+        font-size: 16px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #2c4c6e, #8e7ab5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .logo-text p {
+        font-size: 8px;
+        color: #5da697;
+        font-weight: 600;
+      }
+      .header-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .profile-btn {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(145deg, #ffffff, #f4f0fc);
+        border: 2px solid #8e7ab5;
+        border-radius: 50%;
+        color: #4b76a8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .profile-btn:hover {
+        transform: translateY(-2px) scale(1.04);
+        background: linear-gradient(145deg, #8e7ab5, #5f7da0);
+        color: #fff;
+      }
+      .content {
+        padding: 16px;
+        max-width: 1200px;
+        width: 95%;
+        margin: 0 auto;
+        padding-bottom: 30px;
+        flex: 1;
+      }
+
+      .video-converter-container {
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 22px;
+        border: 2px solid #ece4ff;
+        box-shadow: 0 12px 24px -12px rgba(91, 99, 144, 0.15);
+        position: relative;
+      }
+      .lang-selector-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .lang-card {
+        flex: 1;
+        min-width: 200px;
+        background: linear-gradient(110deg, #fbfaff, #ffffff);
+        border-radius: 24px;
+        padding: 14px 12px;
+        border: 2px solid #e5dcf5;
+        position: relative;
+      }
+      .lang-card:first-child {
+        z-index: 20;
+      }
+      .lang-card:last-child {
+        z-index: 15;
+      }
+      .lang-card-label {
+        font-size: 13px;
+        color: #5da697;
+        margin-bottom: 8px;
+        font-weight: 600;
+        display: flex;
+        gap: 5px;
+      }
+      .lang-select-btn {
+        width: 100%;
+        background: #ffffff;
+        border: 2px solid #cbbff0;
+        border-radius: 50px;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+      .lang-select-text {
+        font-size: 14px;
+        font-weight: 700;
+        color: #2c4c6e;
+      }
+      .dropdown-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #1e2635;
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        max-height: 280px;
+        overflow-y: auto;
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: scaleY(0.95);
+        transform-origin: top;
+        transition: all 0.18s ease;
+        margin-top: 6px;
+      }
+      .dropdown-list.open {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1);
+      }
+      .list-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+        border-bottom: 1px solid #8e7ab5;
+        position: sticky;
+        top: 0;
+        background: #1e2635;
+        border-radius: 20px 20px 0 0;
+      }
+      .close-dropdown {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #ffb4a2;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lang-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+        margin: 4px 10px;
+        background: rgba(255, 255, 245, 0.1);
+        border-radius: 40px;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .lang-item:hover {
+        background: rgba(142, 122, 181, 0.6);
+      }
+      .lang-name {
+        color: #fff2e6;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .native-lang {
+        font-size: 9px;
+        background: #2c523c;
+        padding: 2px 8px;
+        border-radius: 30px;
+        color: #cbe5d9;
+      }
+
+      .pro-mode-selector {
+        background: #f9f7fe;
+        border-radius: 60px;
+        padding: 4px;
+        margin: 15px 0 14px;
+        display: flex;
+        gap: 6px;
+        border: 2px solid #e5ddfa;
+      }
+      .pro-option-btn {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 13px;
+        color: #8f86aa;
+      }
+      .pro-option-btn.active {
+        background: linear-gradient(125deg, #8e7ab5, #4b76a8);
+        color: white;
+      }
+
+      .input-with-button {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .input-with-button .pro-textarea {
+        flex: 1;
+        min-width: 260px;
+      }
+      .pro-textarea textarea {
+        width: 100%;
+        height: 200px;
+        background: #fbf9ff;
+        border-radius: 24px;
+        border: 2px solid #e0d5f2;
+        padding: 16px 18px;
+        font-size: 16px;
+        resize: vertical;
+        outline: none;
+        transition: all 0.2s;
+        font-weight: 500;
+        line-height: 1.6;
+      }
+      .pro-textarea textarea:focus {
+        border-color: #8e7ab5;
+        box-shadow: 0 0 0 3px rgba(142, 122, 181, 0.1);
+      }
+
+      .translate-action-btn {
+        background: linear-gradient(105deg, #5da697, #4b76a8);
+        border: none;
+        border-radius: 60px;
+        padding: 16px 28px;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        transition: 0.25s;
+        margin-top: 8px;
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(77, 118, 168, 0.3);
+      }
+      .translate-action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(93, 166, 151, 0.4);
+      }
+      .translate-action-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* صندوق الترجمة */
+      .translation-result {
+        margin-top: 18px;
+        background: #f8f9fc;
+        border-radius: 20px;
+        padding: 14px 20px;
+        border: 1px solid #e8ecf2;
+        display: none;
+        align-items: center;
+        gap: 14px;
+        transition: all 0.2s ease;
+      }
+      .translation-result.show {
+        display: flex;
+      }
+      .translation-icon {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, #8e7ab5, #4b76a8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .translation-icon i {
+        color: white;
+        font-size: 18px;
+      }
+      .translation-text-wrapper {
+        flex: 1;
+      }
+      .translation-label {
+        font-size: 12px;
+        color: #8e7ab5;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .translation-label .site-name {
+        font-weight: 800;
+        font-size: 12px;
+        color: #4b76a8;
+      }
+      .translation-text {
+        font-size: 16px;
+        color: #2c4c6e;
+        font-weight: 500;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .record-only-container {
+        background: #fbf9ff;
+        border-radius: 24px;
+        padding: 20px;
+        text-align: center;
+      }
+      .record-btn-large {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 20%, #8e7ab5, #4b76a8);
+        border: 4px solid #fff;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 36px;
+        margin: 0 auto;
+      }
+      .record-btn-large.recording {
+        background: #da524e;
+        animation: pulseMic 1.2s infinite;
+      }
+      @keyframes pulseMic {
+        0% {
+          transform: scale(1);
+        }
+        65% {
+          transform: scale(1.06);
+        }
+      }
+      .convert-btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(125deg, #8e7ab5, #4b76a8);
+        border: none;
+        border-radius: 60px;
+        color: #fff;
+        font-weight: 800;
+        font-size: 17px;
+        cursor: pointer;
+        margin-top: 24px;
+        transition: 0.2s;
+      }
+      .convert-btn:hover {
+        transform: scale(0.98);
+      }
+      .video-preview-area {
+        background: #f3effc;
+        border-radius: 22px;
+        padding: 12px;
+        margin-top: 16px;
+        border: 2px solid #cbb7e6;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(22, 25, 45, 0.85);
+        backdrop-filter: blur(8px);
+        display: none;
+        z-index: 2000;
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal.active {
+        display: flex;
+      }
+      .simple-profile {
+        background: white;
+        border-radius: 40px;
+        border: 2px solid #8e7ab5;
+        padding: 24px 28px;
+        max-width: 750px;
+        width: 95%;
+        max-height: 85vh;
+        overflow-y: auto;
+        margin: auto;
+        box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2);
+        scrollbar-width: thin;
+      }
+      .profile-avatar {
+        text-align: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .avatar-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #8e7ab5, #4b76a8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        overflow: hidden;
+        cursor: pointer;
+        border: 3px solid #98c9a3;
+      }
+      .avatar-image i {
+        font-size: 55px;
+        color: #fff;
+      }
+      .upload-icon {
+        position: absolute;
+        bottom: 0;
+        right: calc(50% - 45px);
+        background: #5da697;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        cursor: pointer;
+        border: 2px solid #fff;
+      }
+      .profile-field {
+        margin-bottom: 16px;
+      }
+      .profile-field label {
+        display: block;
+        margin-bottom: 5px;
+        color: #2c4c6e;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .profile-field input,
+      .profile-field textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #e2d7f5;
+        border-radius: 28px;
+        font-size: 14px;
+      }
+      .whatsapp-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: #e4f0ed;
+        border: 2px solid #5da697;
+        border-radius: 36px;
+        text-decoration: none;
+        color: #1f4e5e;
+        margin: 15px 0;
+        font-weight: 600;
+        justify-content: center;
+        font-size: 14px;
+      }
+      .profile-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .profile-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 14px;
+      }
+      .profile-btn.save {
+        background: linear-gradient(135deg, #8e7ab5, #4b76a8);
+        color: white;
+        border: none;
+      }
+      .profile-btn.logout {
+        background: #fef1f0;
+        border: 2px solid #ffacaa;
+        color: #c1544f;
+      }
+
+      .developer-signature {
+        margin-top: 35px;
+        text-align: center;
+        padding: 8px 20px;
+        background: #fefdff;
+        border-radius: 60px;
+        border: 2px solid #dcccf5;
+        font-size: 12px;
+        color: #66877a;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .toast {
+        position: fixed;
+        bottom: 25px;
+        left: 20px;
+        right: 20px;
+        background: #1f2c3cee;
+        backdrop-filter: blur(8px);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: none;
+        z-index: 3000;
+        font-size: 13px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .toast.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      @media (max-width: 650px) {
+        .lang-selector-group {
+          flex-direction: column;
+        }
+        .lang-card {
+          min-width: auto;
+        }
+        .header {
+          padding: 4px 12px;
+        }
+        .input-with-button {
+          flex-direction: column;
+        }
+        .translate-action-btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .translation-result {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-hands-sparkles"></i></div>
+        <div class="logo-text">
+          <h2 id="logoTitle">نتواصل</h2>
+          <p id="logoSubtitle">ترجمة فورية</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="profile-btn" id="profileBtn">
+          <i class="fas fa-user-astronaut"></i>
+        </button>
+      </div>
+    </header>
+    <div class="content">
+      <!-- تم حذف جزء الكاميرا وجملة اليوم بالكامل -->
+
+      <div class="video-converter-container">
+        <div class="lang-selector-group">
+          <div class="lang-card">
+            <div class="lang-card-label">
+              <i class="fas fa-microphone-alt"></i>
+              <span id="sourceLangLabel">لغة المصدر</span>
+            </div>
+            <div class="lang-select-btn" id="sourceLangBtn">
+              <span class="lang-select-text" id="sourceLangText">العربية</span
+              ><i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="dropdown-list" id="sourceLangList">
+              <div class="list-header">
+                <span><i class="fas fa-globe"></i> اختر اللغة المصدر</span
+                ><button class="close-dropdown" id="closeSourceListBtn">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <div id="sourceLanguagesContainer"></div>
+            </div>
+          </div>
+          <div class="lang-card">
+            <div class="lang-card-label">
+              <i class="fas fa-sign-language"></i>
+              <span id="targetLangLabel">لغة الهدف</span>
+            </div>
+            <div class="lang-select-btn" id="targetLangBtn">
+              <span class="lang-select-text" id="targetLangText">English</span
+              ><i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="dropdown-list" id="targetLangList">
+              <div class="list-header">
+                <span><i class="fas fa-globe"></i> اختر اللغة الهدف</span
+                ><button class="close-dropdown" id="closeTargetListBtn">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <div id="targetLanguagesContainer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-mode-selector">
+          <div class="pro-option-btn active" data-pro-option="write">
+            <i class="fas fa-pen-fancy"></i>
+            <span id="proWriteText">كتابة نص عربي</span>
+          </div>
+          <div class="pro-option-btn" data-pro-option="record">
+            <i class="fas fa-microphone"></i>
+            <span id="proRecordText">تسجيل صوتي</span>
+          </div>
+        </div>
+
+        <div id="proWritePanel">
+          <div class="input-with-button">
+            <div class="pro-textarea">
+              <textarea
+                id="videoTextInput"
+                placeholder="اكتب النص هنا بالعربية..."
+              ></textarea>
+            </div>
+            <button class="translate-action-btn" id="translateBtn">
+              <i class="fas fa-language"></i>
+              <span id="translateBtnText">ترجمة</span>
+            </button>
+          </div>
+          <div id="translationResult" class="translation-result">
+            <div class="translation-icon">
+              <i class="fas fa-hands-sparkles"></i>
+            </div>
+            <div class="translation-text-wrapper">
+              <div class="translation-label">
+                <span class="site-name">نتواصل</span>
+                <span>● الترجمة إلى الإنجليزية</span>
+              </div>
+              <div class="translation-text" id="translationTextPlaceholder">
+                الترجمة ستظهر هنا...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="proRecordPanel" style="display: none">
+          <div class="record-only-container">
+            <button class="record-btn-large" id="recordProBtn">
+              <i class="fas fa-microphone-alt"></i>
+            </button>
+            <div
+              class="ai-processing"
+              id="aiProcessingPro"
+              style="display: none"
+            >
+              <i class="fas fa-brain"></i><span> جاري التحويل...</span>
+            </div>
+            <div class="record-status" id="recordProStatus">جاهز للتسجيل</div>
+          </div>
+        </div>
+
+        <button class="convert-btn" id="convertToVideoBtn">
+          <i class="fas fa-film"></i>
+          <span id="convertBtnText">تحويل النص المترجم إلى فيديو</span>
+        </button>
+
+        <div
+          class="video-preview-area"
+          id="videoPreviewArea"
+          style="display: none"
+        >
+          <h4 style="font-size: 14px">
+            <i class="fas fa-video"></i> معاينة الفيديو
+          </h4>
+          <video
+            id="previewVideo"
+            controls
+            style="width: 100%; border-radius: 16px"
+          >
+            <source src="#" />
+          </video>
+        </div>
+      </div>
+
+      <div class="developer-signature" id="developerCredit">
+        <i class="fas fa-microchip"></i> تم التطوير بواسطة
+        <strong>Genius Ai</strong> <i class="fas fa-robot"></i>
+      </div>
+    </div>
+
+    <div class="modal" id="profileModal">
+      <div class="simple-profile">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+          "
+        >
+          <h3 style="font-size: 22px">
+            <i class="fas fa-id-card"></i>
+            <span id="profileTitle">الملف الشخصي</span>
+          </h3>
+          <button
+            id="profileModalClose"
+            style="
+              background: #eae3fc;
+              border: none;
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              cursor: pointer;
+            "
+          >
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+        <div class="profile-avatar">
+          <div class="avatar-image" id="avatarImage">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div
+            class="upload-icon"
+            onclick="document.getElementById('avatarUpload').click()"
+          >
+            <i class="fas fa-camera"></i>
+          </div>
+          <input
+            type="file"
+            id="avatarUpload"
+            accept="image/*"
+            style="display: none"
+          />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-user"></i>
+            <span id="nameLabel">الاسم الكامل</span></label
+          ><input type="text" id="profileName" value="محمود أحمد العناني" />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-envelope"></i>
+            <span id="emailLabel">البريد الإلكتروني</span></label
+          ><input
+            type="email"
+            id="profileEmail"
+            value="mahmoud.alananly@genius.ai"
+          />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-phone"></i>
+            <span id="phoneLabel">رقم الجوال</span></label
+          ><input type="tel" id="profilePhone" value="+20 112 849 2342" />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-briefcase"></i>
+            <span id="jobLabel">الوظيفة / المجال</span></label
+          ><input
+            type="text"
+            id="profileJob"
+            value="خبير ترجمة لغة إشارة - Genius Ai"
+          />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-map-marker-alt"></i>
+            <span id="locationLabel">الموقع</span></label
+          ><input type="text" id="profileLocation" value="القاهرة، مصر" />
+        </div>
+        <div class="profile-field">
+          <label
+            ><i class="fas fa-database"></i>
+            <span id="bioLabel">السيرة الذاتية</span></label
+          ><textarea rows="2" id="profileBio" placeholder="معلومات إضافية">
+خبير في تقنيات الترجمة بلغة الإشارة. مهتم بتطوير حلول تكنولوجية لذوي الهمم.</textarea
+          >
+        </div>
+        <a
+          href="https://wa.me/201128492342"
+          target="_blank"
+          class="whatsapp-link"
+          ><i class="fab fa-whatsapp fa-lg"></i
+          ><span id="whatsappText">واتساب: +20 112 849 2342</span></a
+        >
+        <div class="profile-actions">
+          <button class="profile-btn save" id="profileSave">
+            <i class="fas fa-save"></i>
+            <span id="saveBtnText">حفظ التغييرات</span></button
+          ><button class="profile-btn logout" id="logoutBtn">
+            <i class="fas fa-right-from-bracket"></i>
+            <span id="logoutBtnText">تسجيل الخروج</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="toast" id="toast">
+      <i class="fas fa-circle-info"></i><span id="toastMessage"></span>
+    </div>
+
+    <script>
+      // قائمة اللغات الكاملة
+      const signLanguagesList = [
+        { name: "العربية", native: "ArSL" },
+        { name: "American", native: "ASL" },
+        { name: "German", native: "DGS" },
+        { name: "French", native: "LSF" },
+        { name: "British", native: "BSL" },
+        { name: "International", native: "IS" },
+        { name: "Swiss-German", native: "DSGS" },
+        { name: "Swiss-French", native: "LSF-CH" },
+        { name: "Swiss-Italian", native: "LIS-CH" },
+        { name: "Israeli", native: "ISL" },
+        { name: "Spanish", native: "LSE" },
+        { name: "Jordanian", native: "LIU" },
+        { name: "Belarusian", native: "BSL" },
+        { name: "Bulgarian", native: "Bulg" },
+        { name: "Chinese", native: "CSL" },
+        { name: "Croatian", native: "HZJ" },
+        { name: "Czech", native: "CZJ" },
+        { name: "Danish", native: "DSL" },
+        { name: "Indian", native: "IPSL" },
+        { name: "New Zealand", native: "NZSL" },
+        { name: "Estonian", native: "EVK" },
+        { name: "Finnish", native: "FinSL" },
+        { name: "Austrian", native: "ÖGS" },
+        { name: "Cypriot", native: "CySL" },
+        { name: "Greek", native: "GSL" },
+        { name: "Icelandic", native: "ÍTM" },
+        { name: "Italian", native: "LIS" },
+        { name: "Japanese", native: "JSL" },
+        { name: "Latvian", native: "LSL" },
+        { name: "Lithuanian", native: "LGK" },
+        { name: "Persian", native: "PSL" },
+        { name: "Polish", native: "PJM" },
+        { name: "Brazilian", native: "LIBRAS" },
+        { name: "Portuguese", native: "LGP" },
+        { name: "Romanian", native: "LMB" },
+        { name: "Russian", native: "RSL" },
+        { name: "Slovakian", native: "SJ" },
+        { name: "Argentine", native: "LSA" },
+        { name: "Chilean", native: "LSCh" },
+        { name: "Cuban", native: "LSC" },
+        { name: "Mexican", native: "LSM" },
+        { name: "Swedish", native: "STS" },
+        { name: "Turkish", native: "TİD" },
+        { name: "Ukrainian", native: "USL" },
+        { name: "Pakistan", native: "PSL" },
+      ];
+
+      let sourceLang = "العربية",
+        targetLang = "English";
+      let currentTranslatedText = "";
+
+      function getNativeLang(langName) {
+        const found = signLanguagesList.find((l) => l.name === langName);
+        return found?.native || "ASL";
+      }
+
+      // function getNameLang(langName) {
+      //   const found = signLanguagesList.find((l) => l.name === langName);
+      //   return found?.name || "ASL";
+      // }
+
+      // دالة الترجمة
+      async function translateText(arabicText) {
+        if (!arabicText.trim()) return "";
+
+        // المحاولة الأولى: MyMemory API
+        try {
+          const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(arabicText)}&langpair=ar|en`;
+          const response = await fetch(url);
+          const data = await response.json();
+          if (data && data.responseData && data.responseData.translatedText) {
+            let translated = data.responseData.translatedText;
+            translated = translated.replace(/<[^>]*>/g, "");
+            return translated;
+          }
+        } catch (error) {
+          console.log("MyMemory error, trying next...");
+        }
+
+        // المحاولة الثانية: Google Translate API
+        try {
+          const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=en&dt=t&q=${encodeURIComponent(arabicText)}`;
+          const response = await fetch(url);
+          const data = await response.json();
+          if (data && data[0] && data[0][0] && data[0][0][0]) {
+            return data[0][0][0];
+          }
+        } catch (error) {
+          console.log("Google Translate error");
+        }
+
+        return "⚠️ عذراً، خدمة الترجمة غير متاحة حالياً. تأكد من اتصال الإنترنت.";
+      }
+
+      const translateBtn = document.getElementById("translateBtn");
+      const textInputElement = document.getElementById("videoTextInput");
+      const translationResult = document.getElementById("translationResult");
+      const translationTextPlaceholder = document.getElementById(
+        "translationTextPlaceholder",
+      );
+
+      translationResult.classList.remove("show");
+
+      translateBtn.addEventListener("click", async () => {
+        const arabicText = textInputElement.value.trim();
+
+        if (!arabicText) {
+          showToast("⚠️ الرجاء كتابة نص بالعربية أولاً");
+          return;
+        }
+
+        translateBtn.disabled = true;
+        translateBtn.innerHTML =
+          '<i class="fas fa-spinner fa-pulse"></i> جاري الترجمة...';
+
+        try {
+          translationResult.classList.add("show");
+          translationTextPlaceholder.innerHTML =
+            '<i class="fas fa-spinner fa-pulse"></i> جاري الترجمة...';
+
+          const englishTranslation = await translateText(arabicText);
+
+          if (englishTranslation && !englishTranslation.includes("عذراً")) {
+            currentTranslatedText = englishTranslation;
+            translationTextPlaceholder.innerHTML = englishTranslation;
+            showToast("✅ تمت الترجمة بنجاح");
+          } else {
+            translationTextPlaceholder.innerHTML =
+              "⚠️ لم نتمكن من الترجمة، حاول مرة أخرى";
+            showToast("⚠️ فشلت الترجمة، حاول مرة أخرى");
+          }
+        } catch (err) {
+          console.error("Translation error:", err);
+          translationTextPlaceholder.innerHTML =
+            "⚠️ خطأ في الاتصال، تأكد من اتصال الإنترنت";
+          showToast("⚠️ خطأ في الاتصال");
+        } finally {
+          translateBtn.disabled = false;
+          translateBtn.innerHTML = '<i class="fas fa-language"></i> ترجمة';
+        }
+      });
+
+      function populateLanguages(containerId, callback, isSource) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        signLanguagesList.forEach((lang) => {
+          const div = document.createElement("div");
+          div.className = "lang-item";
+          div.innerHTML = `<span class="lang-name">${lang.name}</span><span class="native-lang">${lang.native}</span>`;
+          div.onclick = () => {
+            callback(lang.name);
+            const dropdownId =
+              containerId === "sourceLanguagesContainer"
+                ? "sourceLangList"
+                : "targetLangList";
+            document.getElementById(dropdownId).classList.remove("open");
+            showToast(`✓ ${lang.name}`);
+            if (isSource) sourceLang = lang.name;
+            else targetLang = lang.name;
+          };
+          container.appendChild(div);
+        });
+      }
+
+      function closeDropdown(drop) {
+        if (drop) drop.classList.remove("open");
+      }
+      function toggleDropdown(drop, e) {
+        e.stopPropagation();
+        drop.classList.toggle("open");
+      }
+
+      populateLanguages(
+        "sourceLanguagesContainer",
+        (name) => {
+          sourceLang = name;
+          document.getElementById("sourceLangText").innerHTML = name;
+        },
+        true,
+      );
+      populateLanguages(
+        "targetLanguagesContainer",
+        (name) => {
+          targetLang = name;
+          document.getElementById("targetLangText").innerHTML = name;
+        },
+        false,
+      );
+
+      const srcList = document.getElementById("sourceLangList"),
+        tgtList = document.getElementById("targetLangList");
+      document
+        .getElementById("sourceLangBtn")
+        .addEventListener("click", (e) => toggleDropdown(srcList, e));
+      document
+        .getElementById("targetLangBtn")
+        .addEventListener("click", (e) => toggleDropdown(tgtList, e));
+      document.getElementById("closeSourceListBtn").onclick = () =>
+        srcList.classList.remove("open");
+      document.getElementById("closeTargetListBtn").onclick = () =>
+        tgtList.classList.remove("open");
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest("#sourceLangBtn") && !srcList.contains(e.target))
+          srcList.classList.remove("open");
+        if (!e.target.closest("#targetLangBtn") && !tgtList.contains(e.target))
+          tgtList.classList.remove("open");
+      });
+
+      let mediaRecorder,
+        audioChunks,
+        isRec = false;
+      const recBtn = document.getElementById("recordProBtn"),
+        recStatus = document.getElementById("recordProStatus"),
+        aiProc = document.getElementById("aiProcessingPro");
+      let proOption = "write";
+      document.querySelectorAll("[data-pro-option]").forEach((btn) => {
+        btn.onclick = () => {
+          proOption = btn.dataset.proOption;
+          document
+            .querySelectorAll("[data-pro-option]")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById("proWritePanel").style.display =
+            proOption === "write" ? "block" : "none";
+          document.getElementById("proRecordPanel").style.display =
+            proOption === "record" ? "block" : "none";
+        };
+      });
+
+      async function startRec() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+          });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+          mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+          mediaRecorder.onstop = () => {
+            aiProc.style.display = "flex";
+            recStatus.innerText = "تحويل...";
+            setTimeout(() => {
+              textInputElement.value = "مرحباً هذا النص من التسجيل الصوتي";
+              aiProc.style.display = "none";
+              recStatus.innerText = "✅ جاهز";
+              showToast("تم تحويل الصوت إلى نص");
+            }, 1500);
+          };
+          mediaRecorder.start();
+          isRec = true;
+          recBtn.classList.add("recording");
+          recStatus.innerText = "🎙️ سجل الآن...";
+          setTimeout(() => {
+            if (isRec) stopRec();
+          }, 10000);
+        } catch (e) {
+          showToast("خطأ في الوصول إلى الميكروفون");
+        }
+      }
+      function stopRec() {
+        if (mediaRecorder && isRec) {
+          mediaRecorder.stop();
+          mediaRecorder.stream.getTracks().forEach((t) => t.stop());
+          isRec = false;
+          recBtn.classList.remove("recording");
+        }
+      }
+      recBtn.onclick = () => {
+        if (!isRec) startRec();
+        else stopRec();
+      };
+      console.log(sourceLang);
+      console.log(targetLang);
+      const convertBtn = document.getElementById("convertToVideoBtn");
+      convertBtn.onclick = async () => {
+        if (!currentTranslatedText) {
+          showToast('⚠️ الرجاء الضغط على زر "ترجمة" أولاً');
+          return;
+        }
+        convertBtn.innerHTML =
+          '<i class="fas fa-spinner fa-pulse"></i> جاري التجهيز...';
+        convertBtn.disabled = true;
+        try {
+          const response = await fetch(
+            "https://translate.geniusaipro.online/text-to-video",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                text: currentTranslatedText,
+                // الخدمة تحتاج كود اللغة (native) مثل ASL/DGS/LSF...
+                // language: targetLang
+                language: "en",
+                glosser: "simple",
+                signed_language: "ase",
+                // signed_language: getNativeLang(targetLang),
+                lexicon_path:
+                  "/opt/spoken-to-signed-translation/assets/dummy_lexicon",
+              }),
+            },
+          );
+
+          if (!response.ok) {
+            throw new Error("فشل في الاتصال بالخدمة");
+          }
+
+          const data = await response.json();
+          const videoUrl =
+            "https://translate.geniusaipro.online" + data.video_url;
+
+          const area = document.getElementById("videoPreviewArea");
+          const vid = document.getElementById("previewVideo");
+          vid.innerHTML = `<source src="${videoUrl}" type="video/mp4">`;
+          vid.load();
+          area.style.display = "block";
+          showToast(`🎬 تم إنشاء فيديو للنص المترجم`);
+        } catch (error) {
+          console.error("خطأ في تحويل النص إلى فيديو:", error);
+          showToast("⚠️ فشل في تحويل النص إلى فيديو، حاول مرة أخرى");
+        } finally {
+          convertBtn.innerHTML =
+            '<i class="fas fa-film"></i> تحويل النص المترجم إلى فيديو';
+          convertBtn.disabled = false;
+        }
+      };
+
+      document.getElementById("avatarUpload").onchange = function (e) {
+        if (e.target.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            document.getElementById("avatarImage").innerHTML =
+              `<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
+            showToast("✅ تم تحديث الصورة الشخصية");
+          };
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      };
+
+      function openProfile() {
+        document.getElementById("profileModal").classList.add("active");
+      }
+      function closeProfile() {
+        document.getElementById("profileModal").classList.remove("active");
+      }
+
+      document.getElementById("profileBtn").onclick = openProfile;
+      document.getElementById("profileModalClose").onclick = closeProfile;
+      document.getElementById("profileSave").onclick = () => {
+        showToast("✅ تم حفظ البيانات الشخصية");
+        closeProfile();
+      };
+      document.getElementById("logoutBtn").onclick = () => {
+        showToast("👋 جاري تسجيل الخروج...");
+        setTimeout(() => location.reload(), 1000);
+      };
+
+      function showToast(msg, dur = 2200) {
+        const t = document.getElementById("toast");
+        document.getElementById("toastMessage").innerText = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), dur);
+      }
+
+      document.getElementById("sourceLangText").innerHTML = "العربية";
+      document.getElementById("targetLangText").innerHTML = "English";
+      sourceLang = "العربية";
+      targetLang = "English";
+    </script>
+  </body>
+</html>
